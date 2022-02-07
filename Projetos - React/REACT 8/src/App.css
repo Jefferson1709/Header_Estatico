@@ -1,0 +1,9 @@
+.App{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Cards {
+    display: flex;
+    flex-wrap: wrap;
+}
