@@ -1,0 +1,18 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+    /*font-family: Oswald;*/
+    font-weight: 300;
+    font-size: 2rem;
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+}
+
+h1, h2 {
+    font-weight: 300;
+}
