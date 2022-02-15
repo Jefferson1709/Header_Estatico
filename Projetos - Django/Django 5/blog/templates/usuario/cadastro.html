@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load meus_filtros %}
+
+{% block header %}
+  <header class="masthead" style="background-image: url('{% static  'blog/img/home-bg.jpg' %}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>web Blog</h1>
+            <span class="subheading">Cadastre-se no melhor blog do Brasil!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock header %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        {{form_usuario.email.errors}}
+        <label>Email: </label>
+        {{form_usuario.email|addclass:'form-control'}}
+    </div>
+
+    <div class="form-group">
+        {{form_usuario.nome.errors}}
+        <label>Nome: </label>
+        {{form_usuario.nome|addclass:'form-control'}}
+    </div>
+
+    <div class="form-group">
+        {{form_usuario.pais_origem.errors}}
+        <label>País de origem: </label>
+        {{form_usuario.pais_origem|addclass:'form-control'}}
+    </div>
+
+    <div class="form-group">
+        {{form_usuario.password1.errors}}
+        <label>Senha: </label>
+        {{form_usuario.password1|addclass:'form-control'}}
+    </div>
+
+    <div class="form-group">
+        {{form_usuario.password2.errors}}
+        <label>Confirmação de senha: </label>
+        {{form_usuario.password2|addclass:'form-control'}}
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+    </div>
+</form>
+{% endblock content %}

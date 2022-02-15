@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load meus_filtros %}
+
+{% block header %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{post.capa.url}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{ post.titulo }}</h1>
+            <span class="subheading">{{ post.descricao }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock header %}
+
+{% block content %}
+<article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>{{ post.conteudo }}</p>
+        </div>
+      </div>
+    </div>
+  </article>
+<hr>
+{% if user.is_authenticated %}
+<h3>Comentários</h3>
+{% for comentario in comentarios %}
+<div class="card w-100">
+  <div class="card-body">
+    <h5 class="card-title">{{comentario.usuario.nome}}</h5>
+    <p class="card-text">{{comentario.conteudo|safe}}</p>
+  </div>
+</div>
+<br>
+{% endfor %}
+<hr>
+<form method="post">
+  <div class="form-group">
+    {% csrf_token %}
+        {{form_comentario.conteudo.errors}}
+        <label>Comentário: </label>
+        {{ form_comentario.conteudo|addclass:'form-control' }}
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+{% else %}
+<h3>Faça o login para visualizar e cadastrar comentários</h3>
+{% endif %}
+{% endblock content %}
